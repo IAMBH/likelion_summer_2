@@ -50,7 +50,7 @@ class PostViewSet(viewsets.ModelViewSet):
         post = self.get_object()    # 현재 url의 post
         reaction = PostReaction.objects.filter(post=post, user=request.user, reaction='like')
         # 이미 좋아요를 누른 user이면
-        if reaction:
+        if reaction.exists():    # reaction
             reaction.delete()
         # 좋아요를 누르지 않았다면 
         else:
@@ -63,7 +63,7 @@ class PostViewSet(viewsets.ModelViewSet):
         post = self.get_object()    # 현재 url의 post
         reaction = PostReaction.objects.filter(post=post, user=request.user, reaction='dislike') 
         # 이미 좋아요를 누른 user이면
-        if reaction:
+        if reaction.exists:
             reaction.delete()
         # 좋아요를 누르지 않았다면 
         else:
